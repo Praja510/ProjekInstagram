@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/bott_home"
+        android:title="Home"
+        android:icon="@drawable/ic_home_black_24dp"/>
+
+    <item
+        android:id="@+id/bott_search"
+        android:title="Search"
+        android:icon="@drawable/ic_baseline_search_24"/>
+
+
+    <item
+        android:id="@+id/bott_addpost"
+        android:title="Add Post"
+        android:icon="@drawable/add"/>
+
+
+    <item
+        android:id="@+id/bott_like"
+        android:title="Like"
+        android:icon="@drawable/ic_twotone_favorite_border_24"/>
+
+    <item
+        android:id="@+id/bott_Profile"
+        android:title="Home"
+        android:icon="@drawable/ic_baseline_person_24"/>
+
+
+
+
+</menu>
