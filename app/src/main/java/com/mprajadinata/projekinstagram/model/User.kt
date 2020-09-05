@@ -29,7 +29,7 @@ class User {
     fun getImage(): String {
         return image
     }
-    fun getUid(): String {
+    fun getUID(): String {
         return uid
     }
 
