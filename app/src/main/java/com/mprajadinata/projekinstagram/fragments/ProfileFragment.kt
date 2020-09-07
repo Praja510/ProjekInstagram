@@ -47,12 +47,54 @@ class ProfileFragment : Fragment() {
         }
 
         viewProfile.btn_edit_profile.setOnClickListener {
-            startActivity(Intent(context, EditProfilActivity::class.java))
+            val getButtonText = view?.btn_edit_profile?.text.toString()
 
+            when {
+                getButtonText == "Edit Profile" -> startActivity(
+                    Intent(
+                        context,
+                        EditProfilActivity::class.java
+                    )
+                )
+
+                getButtonText == "Follow" -> {
+                    firebaseUser?.uid.let { it1 ->
+                        FirebaseDatabase.getInstance().reference
+                            .child("Follow").child(it1.toString())
+                            .child("Following").child(profileid)
+                            .setValue(true)
+                    }
+
+                    firebaseUser?.uid.let { it1 ->
+                        FirebaseDatabase.getInstance().reference
+                            .child("Follow").child(profileid)
+                            .child("Followers").child(it1.toString())
+                            .setValue(true)
+                    }
+                }
+
+                getButtonText == "Following" -> {
+                    firebaseUser?.uid.let { it1 ->
+                        FirebaseDatabase.getInstance().reference
+                            .child("Follow").child(it1.toString())
+                            .child("Following").child(profileid)
+                            .removeValue()
+                    }
+
+                    firebaseUser?.uid.let { it1 ->
+                        FirebaseDatabase.getInstance().reference
+                            .child("Follow").child(profileid)
+                            .child("Followers").child(it1.toString())
+                            .removeValue()
+                    }
+                }
+            }
         }
+
         getFollowers()
         getFollowings()
         userInfo()
+
         return viewProfile
     }
 
