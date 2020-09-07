@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.DataSnapshot
@@ -35,27 +36,27 @@ class SearchFragment : Fragment() {
 
         recycler = view.findViewById(R.id.recycler_search)
         recycler?.setHasFixedSize(true)
-        recycler?.layoutManager = LinearLayoutManager(context)
+        recycler?.layoutManager = GridLayoutManager(context, 2)
 
         myUser = ArrayList()
-        userAdapter =
-            context?.let { it?.let { it1 -> UserAdapter(it1, myUser as ArrayList<User>) } }
+        userAdapter = context?.let {
+            it.let { it1 -> UserAdapter(it1, myUser as ArrayList<User>) }
+        }
+
         recycler?.adapter = userAdapter
 
         view.edt_search.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(p0: Editable?) {
-            }
+            override fun afterTextChanged(p0: Editable?) {}
 
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 if (view.edt_search.toString() == "") {
 
-                }else {
+                } else {
                     recycler?.visibility = View.VISIBLE
                     getUser()
-                    searchUser(toString().toLowerCase())
+                    searchUser(p0.toString().toLowerCase())
                 }
             }
         })
@@ -70,15 +71,13 @@ class SearchFragment : Fragment() {
             .startAt(toLower).endAt(toLower + "\uf8ff")
 
         query.addValueEventListener(object : ValueEventListener {
-            override fun onCancelled(error: DatabaseError) {
-
-            }
+            override fun onCancelled(error: DatabaseError) {}
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 myUser?.clear()
 
-                for (snapshot in snapshot.children) {
-                    val user = snapshot.getValue(User::class.java)
+                for (s in snapshot.children) {
+                    val user = s.getValue(User::class.java)
                     if (user != null) {
                         myUser?.add(user)
                     }
@@ -100,8 +99,8 @@ class SearchFragment : Fragment() {
                 if (view?.edt_search?.text.toString() == "")
                     myUser?.clear()
 
-                for (snapshot in snapshot.children) {
-                    val user = snapshot.getValue(User::class.java)
+                for (s in snapshot.children) {
+                    val user = s.getValue(User::class.java)
                     if (user != null) {
                         myUser?.add(user)
                     }

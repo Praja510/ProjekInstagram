@@ -36,7 +36,9 @@ class UserAdapter (private var mContext: Context, private val mUser: List<User>)
         val user = mUser[position]
         holder.usernameTxtView.text = user.getUsername()
         holder.fullnameTxtView.text = user.getFullname()
-        Picasso.get().load(user.getImage()).placeholder(R.drawable.profile).into(holder.userProfilImage)
+        Picasso.get()
+            .load(user.getImage())
+            .into(holder.userProfilImage)
 
         cekFollowStatus(user.getUID(), holder.followButton)
 
