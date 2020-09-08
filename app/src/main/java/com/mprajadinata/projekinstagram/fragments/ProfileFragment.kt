@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot
@@ -17,6 +18,7 @@ import com.mprajadinata.projekinstagram.EditProfilActivity
 import com.mprajadinata.projekinstagram.R
 import com.mprajadinata.projekinstagram.model.User
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlinx.android.synthetic.main.fragment_profile.view.*
 
 class ProfileFragment : Fragment() {
@@ -150,7 +152,7 @@ class ProfileFragment : Fragment() {
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
-                    view?.txt_total_followers?.text = snapshot.childrenCount.toString()
+                    view?.txt_total_following?.text = snapshot.childrenCount.toString()
 
                 }
             }
@@ -168,8 +170,11 @@ class ProfileFragment : Fragment() {
                 if (snapshot.exists()) {
                     val user = snapshot.getValue<User>(User::class.java)
 
+//                    Glide.with(this@ProfileFragment).load(user?.getImage()).into(profile_pic)
+
                     Picasso.get().load(user?.getImage()).placeholder(R.drawable.profile)
                         .into(view?.profile_pic)
+
                     view?.profile_username?.text = user?.getUsername()
                     view?.txt_profile_fullname?.text = user?.getFullname()
                     view?.txt_profile_bio?.text = user?.getBio()

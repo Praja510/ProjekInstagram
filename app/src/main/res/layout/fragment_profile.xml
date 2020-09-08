@@ -85,6 +85,7 @@
                 android:textColor="@android:color/black"
                 />
         </LinearLayout>
+
         <LinearLayout
             android:layout_margin="10dp"
             android:layout_width="wrap_content"
@@ -155,16 +156,9 @@
             android:layout_height="wrap_content"
             android:textSize="17sp"
             android:text="prog" />
-        <TextView
-            android:id="@+id/website_user"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:textColor="@android:color/black"
-            android:text="I feel good" />
-
 
         <Button
+            android:layout_marginTop="4dp"
             android:id="@+id/btn_edit_profile"
             android:layout_width="385dp"
             android:layout_height="wrap_content"

@@ -55,7 +55,7 @@
         android:layout_marginTop="12dp"/>
 
     <TextView
-        android:id="@+id/btn_change_poto"
+        android:id="@+id/txt_change_poto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Change Image"
@@ -75,7 +75,7 @@
         android:layout_marginTop="15dp"
         android:inputType="text"
         android:hint="Profil Name"
-        android:layout_below="@+id/btn_change_poto"/>
+        android:layout_below="@+id/txt_change_poto" />
 
     <EditText
         android:id="@+id/edt_username_profil"
