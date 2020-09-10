@@ -1,5 +1,6 @@
 package com.mprajadinata.projekinstagram
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -33,6 +34,8 @@ class MainActivity : AppCompatActivity() {
                 selectedFragment = SearchFragment()
             }
             R.id.bott_addpost -> {
+                i.isChecked = false
+                startActivity(Intent(this@MainActivity, AddPostActivity::class.java))
                 return@OnNavigationItemSelectedListener true
             }
             R.id.bott_like -> {

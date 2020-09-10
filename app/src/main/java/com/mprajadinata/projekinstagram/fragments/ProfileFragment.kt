@@ -170,10 +170,10 @@ class ProfileFragment : Fragment() {
                 if (snapshot.exists()) {
                     val user = snapshot.getValue<User>(User::class.java)
 
-//                    Glide.with(this@ProfileFragment).load(user?.getImage()).into(profile_pic)
+                    Glide.with(this@ProfileFragment).load(user?.getImage()).into(profile_pic)
 
-                    Picasso.get().load(user?.getImage()).placeholder(R.drawable.profile)
-                        .into(view?.profile_pic)
+//                    Picasso.get().load(user?.getImage()).placeholder(R.drawable.profile)
+//                        .into(view?.profile_pic)
 
                     view?.profile_username?.text = user?.getUsername()
                     view?.txt_profile_fullname?.text = user?.getFullname()
